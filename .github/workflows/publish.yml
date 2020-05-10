@@ -1,0 +1,30 @@
+name: Publish to NPM
+
+on:
+  release:
+    types: [created]
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - uses: actions/checkout@v1
+
+      - run: |
+          npm set progress=false
+          npm set package-lock=false
+          npm set registry https://registry.npmjs.org/ && echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
+
+      - run: yarn install --silent --frozen-lockfile
+
+      - run: yarn build
+
+      - run: npm publish --access public
