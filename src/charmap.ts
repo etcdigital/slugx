@@ -1,3 +1,5 @@
+// tslint:disable: quotemark
+
 export default {
   $: 'dollar',
   '%': 'percent',
