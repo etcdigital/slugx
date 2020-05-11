@@ -26,7 +26,7 @@ export const create = (value: string, options: Options = {}): string => {
     // also remove duplicates of the replacement character
     .replace(new RegExp('[\\s' + separator + ']+', 'g'), separator);
 
-  if (options.lowercase) {
+  if (options.lowercase !== false) {
     slug = slug.toLowerCase();
   }
 
