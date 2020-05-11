@@ -1,4 +1,4 @@
-import charMap from './charmap.json';
+import charMap from './charmap';
 
 type Options = {
   separator?: string;
