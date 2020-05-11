@@ -33,6 +33,10 @@ describe('slugx.create', () => {
     expect(slugx.create('Foo bAr baZ', { lowercase: true })).toBe('foo-bar-baz');
   });
 
+  it('without lowercase param', () => {
+    expect(slugx.create('Is Slug Valid')).toBe('is-slug-valid');
+  });
+
   it('options.strict', () => {
     expect(slugx.create('foo_bar. -baz!', { strict: true })).toBe('foobar-baz');
   });
