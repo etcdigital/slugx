@@ -61,18 +61,30 @@ describe('slugx.validate', () => {
   });
 
   it('is valid with min', () => {
-    expect(slugx.validate('is-slug-valid', 4)).toBe(true);
+    expect(slugx.validate('is-slug-valid', { min: 4 })).toBe(true);
   });
 
   it('is invalid with min', () => {
-    expect(slugx.validate('is', 3)).toBe(false);
+    expect(slugx.validate('is', { min: 3 })).toBe(false);
   });
 
   it('is valid with min and max', () => {
-    expect(slugx.validate('is-slug-valid', 4, 20)).toBe(true);
+    expect(slugx.validate('is-slug-valid', { min: 4, max: 20 })).toBe(true);
   });
 
   it('is invalid with min and max', () => {
-    expect(slugx.validate('is-max', 3, 4)).toBe(false);
+    expect(slugx.validate('is-max', { min: 3, max: 4 })).toBe(false);
+  });
+
+  it('allow only numbers by defalt', () => {
+    expect(slugx.validate('12312312')).toBe(true);
+  });
+
+  it('allow only numbers by config', () => {
+    expect(slugx.validate('12312312', { allowOnlyNumbers: true })).toBe(true);
+  });
+
+  it('deny only numbers', () => {
+    expect(slugx.validate('12312312', { allowOnlyNumbers: false })).toBe(false);
   });
 });
