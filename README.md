@@ -14,6 +14,14 @@ const newSlug = slugx.create('Hello world');
 // slugx = 'hello-world'
 ```
 
+### Remove accents
+
+```js
+const slugx = require('slugx');
+const newSlug = slugx.removeAccents('àéîõü');
+// slugx = 'aeiou'
+```
+
 ### Validate Slug
 
 ```js
