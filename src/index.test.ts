@@ -88,3 +88,9 @@ describe('slugx.validate', () => {
     expect(slugx.validate('12312312', { allowOnlyNumbers: false })).toBe(false);
   });
 });
+
+describe('slugx.removeAccents', () => {
+  it('remove many assents', () => {
+    expect(slugx.removeAccents('àéîõü')).toBe('aeiou');
+  });
+});
