@@ -6,20 +6,26 @@ type CreateOptions = {
   strict?: boolean;
 };
 
+const removeAccents = (value: string) => {
+  return (
+    value
+      .split('')
+      // replace characters based on charMap
+      .reduce((result, chars) => result + (charMap[chars] || chars), '')
+      // remove not allowed characters
+      .replace(/[^\w\s$*_+~.()'"!\-:@]+/g, '')
+      // trim leading/trailing spaces
+      .trim()
+  );
+};
+
 export const create = (value: string, options: CreateOptions = {}): string => {
   const opts: CreateOptions = { separator: '-', lowercase: true, strict: false, ...options };
   if (typeof value !== 'string') {
     throw new Error('slugx.create: string argument expected');
   }
 
-  let slug = value
-    .split('')
-    // replace characters based on charMap
-    .reduce((result, chars) => result + (charMap[chars] || chars), '')
-    // remove not allowed characters
-    .replace(/[^\w\s$*_+~.()'"!\-:@]+/g, '')
-    // trim leading/trailing spaces
-    .trim()
+  let slug = removeAccents(value)
     // convert spaces to replacement character
     // also remove duplicates of the replacement character
     .replace(new RegExp('[\\s' + opts.separator + ']+', 'g'), opts.separator);
@@ -65,4 +71,4 @@ export const validate = (slug: string, options: ValidateOptions = {}): boolean =
   return true;
 };
 
-export default { create, validate };
+export default { create, validate, removeAccents };
