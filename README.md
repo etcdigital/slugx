@@ -16,10 +16,14 @@ const newSlug = slugx.create('Hello world');
 
 ### Remove accents
 
+Removes the accents from a string, converting them to their corresponding non-accented ASCII characters.
+
 ```js
 const slugx = require('slugx');
 const newSlug = slugx.removeAccents('àéîõü');
 // slugx = 'aeiou'
+
+console.log(slugx.removeAccents('ÀÁÂÃÄÅ')); // AAAAAA
 ```
 
 ### Validate Slug
