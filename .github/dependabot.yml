@@ -2,7 +2,6 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
-    open-pull-requests-limit: 1
     schedule:
       interval: "daily"
     assignees:
@@ -14,9 +13,8 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/"
-    open-pull-requests-limit: 1
     schedule:
-      interval: "daily"
+      interval: "weekly"
     reviewers:
       - "etc-tiago"
     labels:
